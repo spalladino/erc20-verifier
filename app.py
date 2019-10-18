@@ -10,9 +10,9 @@ from contextlib import redirect_stdout
 app = Chalice(app_name='erc20-verifier')
 app.debug = True
 
-ETHERSCAN_API_KEY = 'KEY'
+ETHERSCAN_API_KEY = ''
 
-@app.route('/verify/{address}', methods=['GET'])
+@app.route('/verify/{address}', methods=['GET'], cors=True)
 def verify(address):
   # Validate input
   if not address or len(address) == 0:

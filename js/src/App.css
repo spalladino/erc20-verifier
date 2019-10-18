@@ -1,0 +1,28 @@
+.App {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.App-header {
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: #09d3ac;
+}
+
+.App-body {
+  max-width: 600px;
+}
+
+.App-notes {
+  margin-top: 60px;
+}
