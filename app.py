@@ -3,13 +3,14 @@ from chalice import BadRequestError, NotFoundError
 from requests import get
 from tempfile import TemporaryFile, TemporaryDirectory
 from os import chdir, getcwd, path
-from erc20 import erc20
+from chalicelib.erc20 import erc20
 from io import StringIO
 from contextlib import redirect_stdout
 
 app = Chalice(app_name='erc20-verifier')
+app.debug = True
 
-ETHERSCAN_API_KEY = 'API_KEY'
+ETHERSCAN_API_KEY = 'KEY'
 
 @app.route('/verify/{address}', methods=['GET'])
 def verify(address):
@@ -24,21 +25,17 @@ def verify(address):
   
   # Get path to solc
   workdir = getcwd()
-  solc = path.join(workdir, "vendor", "solc-0.5.12")
+  solc = path.join(workdir, "solc-0.5.12")
   
-  # Run in tempdir
-  with TemporaryDirectory() as tmpdir:
-    
-    # Write source to disk
-    chdir(tmpdir)
-    filename = path.join(tmpdir, "%s.sol" % (name,))
-    with open(filename, "w") as contractfile:
-      contractfile.write(source)
-    
-    # Capture stdout and run slither
-    output = StringIO()
-    with redirect_stdout(output):
-      erc20.run(filename, name, solc=solc)
+  # Write down contract
+  filename = path.join("/tmp", "%s.sol" % (address,))
+  with open(filename, "w") as contractfile:
+    contractfile.write(source)
+  
+  # Capture stdout and run slither
+  output = StringIO()
+  with redirect_stdout(output):
+    erc20.run(filename, name, solc=solc)
 
   return { "name": name, "output": output.getvalue(), "source": source }
 
