@@ -6,8 +6,10 @@ from os import chdir, getcwd, path
 from chalicelib.erc20 import erc20
 from io import StringIO
 from contextlib import redirect_stdout
+from logging import INFO
 
 app = Chalice(app_name='erc20-verifier')
+app.log.setLevel(INFO)
 
 LOCAL = False
 ETHERSCAN_API_KEY = ''
@@ -21,6 +23,8 @@ def verify(address):
   if len(address) != 40 and len(address) != 42:
     raise BadRequestError("Malformed address %s" % (address,))
   
+  app.log.info("Request %s" % (address,))
+
   # Get source from etherscan
   name, source, compiler = get_name_and_source(address)
   
