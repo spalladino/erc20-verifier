@@ -1,16 +1,9 @@
-# Slither scripts
+# ERC20 verifier
 
-- In `erc20` folder, a script to detect ERC20 interfaces
-- In `modifier` folder, a script to detect functions with a given modifier
+Fork of [tinchoabbate's slither-scripts](https://github.com/tinchoabbate/slither-scripts/tree/master/erc20) packed as an AWS lambda using Chalice, with a create-react-app frontend. Accepts an address, fetches the source code from Etherscan, and runs Slither to verify ERC20 compatibility using solc 0.5.12.
 
-## Requirements
-- [Python 3](https://www.python.org/downloads/)
-- [Slither](https://github.com/trailofbits/slither)
+https://erc20-verifier.openzeppelin.com/
 
-## Install
-1. Clone this repository
-2. `cd slither-scripts`
-3. `pip3 install -r requirements.txt`
+> Bear in mind that, currently, the script does not verify that the functions found behave as expected. It just checks for matching signatures, return types, existence of custom modifiers, event emissions, among others. You still have to manually (or dynamically) test the functions to make sure they are doing the right thing.
 
-## Maintainers
-[@tinchoabbate](https://github.com/tinchoabbate)
+Use at your own risk!
