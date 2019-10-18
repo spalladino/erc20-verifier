@@ -9,7 +9,7 @@ class Checker extends React.Component {
     super();
     this.handleClick = this.handleClick.bind(this);
     this.input = React.createRef();
-    this.state = { verifying: false, error: null, output: null, name: null };
+    this.state = { verifying: false, error: null, output: null, name: null, address: this.getAddress() };
   }
 
   async handleClick() {
@@ -24,6 +24,12 @@ class Checker extends React.Component {
     } finally {
       this.setState({ verifying: false });
     }
+  }
+
+  getAddress() {
+    const hash = window.location.hash;
+    if (hash && hash.length === 41 || hash.length === 43) return hash.substring(1);
+    return SAMPLE_ADDRESS;
   }
 
   renderName() {
@@ -47,11 +53,11 @@ class Checker extends React.Component {
   }
 
   render() {
-    const { verifying, error } = this.state;
+    const { verifying, error, address } = this.state;
     return (
       <div className="Checker-body">
         <div>
-          <input type="text" className="Checker-input" ref={this.input} defaultValue={SAMPLE_ADDRESS}></input>
+          <input type="text" className="Checker-input" ref={this.input} defaultValue={address}></input>
           <button disabled={verifying} className="Checker-button" onClick={this.handleClick}>
             {verifying ? 'Verifying...' : 'Verify'}
           </button>
