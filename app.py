@@ -8,9 +8,10 @@ from io import StringIO
 from contextlib import redirect_stdout
 
 app = Chalice(app_name='erc20-verifier')
-app.debug = True
 
+LOCAL = False
 ETHERSCAN_API_KEY = ''
+app.debug = LOCAL
 
 @app.route('/verify/{address}', methods=['GET'], cors=True)
 def verify(address):
@@ -21,11 +22,18 @@ def verify(address):
     raise BadRequestError("Malformed address %s" % (address,))
   
   # Get source from etherscan
-  name, source = get_name_and_source(address)
+  name, source, compiler = get_name_and_source(address)
   
   # Get path to solc
   workdir = getcwd()
-  solc = path.join(workdir, "solc-0.5.12")
+  solcdir = path.join(workdir, "vendor") if LOCAL else workdir
+
+  if compiler.startswith("v0.4"):
+    solc = path.join(solcdir, "solc-0.4.25")
+  elif compiler.startswith("v0.5"):
+    solc = path.join(solcdir, "solc-0.5.12")
+  else:
+    raise BadRequestError("Unsupported compiler version %s" % (compiler,))
   
   # Write down contract
   filename = path.join("/tmp", "%s.sol" % (address,))
@@ -47,6 +55,7 @@ def get_name_and_source(address):
 
   return (
     response["result"][0]["ContractName"],
-    response["result"][0]["SourceCode"]
+    response["result"][0]["SourceCode"],
+    response["result"][0]["CompilerVersion"],
   )
   
