@@ -8,7 +8,7 @@ from slither.slithir.operations.binary import Binary as BinaryOperation
 from slither.slithir.operations.solidity_call import SolidityCall as SolidityCallOperation
 from slither.solc_parsing.variables.state_variable import StateVariableSolc
 from slither.core.solidity_types.mapping_type import MappingType
-from constants import (
+from .constants import (
     ERC20_EVENT_SIGNATURES,
     ERC20_FX_SIGNATURES,
     ERC20_GETTERS,
@@ -16,7 +16,7 @@ from constants import (
     ALLOWANCE_FRONTRUN_FX_SIGNATURES,
     ALLOWANCE_FRONTRUN_EVENT_BY_FX
 )
-from log import (
+from .log import (
     log_matches,
     log_event_per_function,
     log_modifiers_per_function,
@@ -263,11 +263,11 @@ def checks_sender_balance_in_require(node):
     return False
 
 
-def run(filename, contract_name):
+def run(filename, contract_name, **slitherargs):
     """Executes script"""
 
     # Init Slither
-    slither = Slither(filename)
+    slither = Slither(filename, **slitherargs)
 
     # Get an instance of the contract to be analyzed
     contract = slither.get_contract_from_name(contract_name)

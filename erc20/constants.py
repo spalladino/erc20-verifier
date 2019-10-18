@@ -1,4 +1,4 @@
-from signature import Signature
+from .signature import Signature
 
 ERC20_FX_SIGNATURES = [
     Signature("transfer", ["address", "uint256"], ["bool"]),
