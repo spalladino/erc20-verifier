@@ -53,3 +53,7 @@ a { color: #4e5ee4; }
   padding: 34px 0;
   border-top: solid 1px #E1E1E2;
 }
+
+@media only screen and (max-width: 45rem) {
+  .App { padding: 1rem; }
+}
