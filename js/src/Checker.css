@@ -1,6 +1,10 @@
 .Checker-input {
-  width: 450px;
-  font-size: 120%;
+	width: 76%;
+    font-size: 1.2em;
+    padding: .5rem .75rem;
+    border: solid 1px #c6c6c9;
+    border-radius: 6px;
+    height: 3rem;
 }
 
 .Checker-button {
