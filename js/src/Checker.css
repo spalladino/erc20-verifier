@@ -42,10 +42,17 @@
 	color: #4e5ee4;
 	opacity: .9;
 }
+
+.Checker-name {
+    font-family: 'silka';
+    font-size: 1.2em;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 1rem;
 }
 
 .Checker-response {
-  font-size: 140%;
-  margin-bottom: 40px;
+	font-size: 1.3em;
+	margin-bottom: 3rem;
 }
 
