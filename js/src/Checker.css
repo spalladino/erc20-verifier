@@ -1,3 +1,14 @@
+.Checker-body {
+    margin: 0 auto 2rem;
+}
+
+.Checker-form {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 2rem 0;
+}
+
 .Checker-input {
 	width: 76%;
     font-size: 1.2em;
