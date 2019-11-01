@@ -65,6 +65,8 @@
 .Checker-response {
 	font-size: 1.3em;
 	margin-bottom: 3rem;
+	white-space: pre-wrap;
+  	word-wrap: break-word;
 }
 
 @media only screen and (max-width: 45rem) {
