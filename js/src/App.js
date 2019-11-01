@@ -1,6 +1,7 @@
 import React from 'react';
 import Checker from './Checker';
 import './App.css';
+import './fonts/silka-semibold-webfont.ttf'
 
 function App() {
   return (
