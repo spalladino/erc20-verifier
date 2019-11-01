@@ -8,9 +8,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>ERC20 Verifier</h1>
-        <p>
+        <h2>
           Enter the address of an ERC20 contract to check if it conforms to the standard
-        </p>
+        </h2>
       </header>
       <div className="App-body">
         <Checker />
