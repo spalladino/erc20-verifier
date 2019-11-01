@@ -56,11 +56,13 @@ class Checker extends React.Component {
     const { verifying, error, address } = this.state;
     return (
       <div className="Checker-body">
-        <div>
+        <div className="Checker-form">
           <input type="text" className="Checker-input" ref={this.input} defaultValue={address}></input>
           <button disabled={verifying} className="Checker-button" onClick={this.handleClick}>
             {verifying ? 'Verifying...' : 'Verify'}
           </button>
+        </div>
+        <div>
           {this.renderName()}
           {this.renderResponse()}
         </div>
