@@ -4,9 +4,40 @@
 }
 
 .Checker-button {
-  width: 120px;
-  font-size: 120%;
-  margin-left: 10px;
+	width: 22%;
+	height: 46px;
+	margin-left: 2%;
+	padding-right: 0.5rem;
+    padding-left: 0.5rem;
+	font-family: 'silka';
+	text-align: center;
+	text-transform: uppercase;
+    text-decoration: none;
+	font-size: 1em;
+	line-height: 40px;
+    font-weight: 600;
+    letter-spacing: 1px;
+	color: white;
+	background-color: #4e5ee4;
+	box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    border: none;
+    border-radius: 6px;
+	cursor: pointer;
+}
+
+.Checker-button:hover {
+	background-color: #4352d4;
+}
+
+.Checker-button:disabled,
+.Checker-button[disabled]{
+	height: 44px;
+	border: solid 1px #4e5ee4;
+	background-color: #f8f8fa;
+	box-shadow: none;
+	color: #4e5ee4;
+	opacity: .9;
+}
 }
 
 .Checker-response {
